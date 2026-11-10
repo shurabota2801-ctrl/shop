@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% if category %}{{ category.name }}{% else %}Каталог товаров{% endif %}
+    </title>
+</head>
+<body>
+
+    <h1>
+        {% if category %}
+            Категория: {{ category.name }}
+        {% else %}
+            Все товары
+        {% endif %}
+    </h1>
+
+    <nav>
+        <strong>Категории:</strong>
+        <a href="{% url 'products:products_list' %}">Все</a>
+        {% for c in categories %}
+            | <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        {% endfor %}
+    </nav>
+
+    <hr>
+
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>
+                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    — {{ product.price }} ₽
+                    {% if not product.available %}(нет в наличии){% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Товаров нет.</p>
+    {% endif %}
+
+</body>
+</html>

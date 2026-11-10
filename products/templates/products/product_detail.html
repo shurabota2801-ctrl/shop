@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+</head>
+<body>
+
+    <p>
+        <a href="{% url 'products:products_list' %}">← Все товары</a> |
+        <a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a>
+    </p>
+
+    <h1>{{ product.name }}</h1>
+
+    {% if product.image %}
+        <p><img src="{{ product.image.url }}" alt="{{ product.name }}" width="300"></p>
+    {% endif %}
+
+    <p><strong>Цена:</strong> {{ product.price }} ₽</p>
+    <p><strong>Наличие:</strong> {% if product.available %}есть{% else %}нет{% endif %}</p>
+
+    {% if product.description %}
+        <h2>Описание</h2>
+        <p>{{ product.description|linebreaks }}</p>
+    {% endif %}
+
+    <p>
+        <small>
+            Создано: {{ product.created|date:"d.m.Y H:i" }}<br>
+            Обновлено: {{ product.updated|date:"d.m.Y H:i" }}
+        </small>
+    </p>
+
+</body>
+</html>
