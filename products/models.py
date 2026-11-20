@@ -23,8 +23,8 @@ class Product(models.Model):
     description = models.TextField(max_length=5000, blank=True, verbose_name='Описание')
     available = models.BooleanField(default=True, verbose_name='Наличие')
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-    updated = models.DateTimeField(auto_now_add=True, verbose_name='Обновлено')
-    created = models.DateTimeField(auto_now=True, verbose_name='Создано')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
 
     class Meta:
         verbose_name = 'Товар'

@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import CustomerUser
 
-# Create your views here.
+def login(request):
+    pass
+
+def register(request):
+    pass
+
+def logout(request):
+    pass
